@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protótipo Navegável Poligloo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css"> 
+</head>
+<body>
+    <div id="app-container">
+        <div id="app-screen" class="app-screen">
+            </div>
+    </div>
+
+    <div id="gemini-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h3 id="gemini-modal-title" class="modal-title">Resultado da IA ✨</h3>
+            <div id="gemini-modal-body" class="modal-body">
+                <div class="loading-spinner"></div>
+            </div>
+            <button class="modal-close-button" onclick="closeGeminiModal()">Fechar</button>
+        </div>
+    </div>
+
+    <div id="login-screen-template" style="display: none;">
+        <div class="screen-template-container">
+            <div class="auth-screen-container">
+                <div class="auth-card">
+                    <img src="images/Logo-horizontal-sem-simbolo.png" alt="Logo Poligloo" class="auth-logo">
+                    <input type="text" placeholder="nome de usuário ou email" class="auth-input">
+                    <input type="password" placeholder="senha" class="auth-input">
+                    <button class="auth-button" onclick="navigateTo('loading', 'home')">Entrar</button> 
+                    <p class="auth-link">
+                        <span class="main-text">Não tem uma conta? </span><a href="#" class="action-text" onclick="navigateTo('registration')">Cadastre-se</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="registration-screen-template" style="display: none;">
+        <div class="screen-template-container">
+            <div class="auth-screen-container">
+                <div class="auth-card">
+                    <img src="images/Logo-horizontal-sem-simbolo.png" alt="Logo Poligloo" class="auth-logo">
+                    <input type="text" placeholder="Matrícula" class="auth-input">
+                    <input type="text" placeholder="Nome completo" class="auth-input">
+                    <input type="text" placeholder="Nome de usuário" class="auth-input">
+                    <input type="password" placeholder="Senha" class="auth-input">
+                    <button class="auth-button" onclick="navigateTo('loading', 'home')">Cadastre-se</button>
+                    <p class="auth-link">
+                        <span class="main-text">Já tem uma conta? </span><a href="#" class="action-text" onclick="navigateTo('login')">Entrar</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading-screen-template" style="display: none;">
+         <div class="screen-template-container">
+            <div class="flex flex-col items-center justify-center h-full bg-[#F4F6F9]">
+                <img src="images/Logo-Vertical.png" alt="Carregando Poligloo" class="poligloo-logo-vertical-loading mb-2">
+                <div class="poligloo-loading-text">
+                    <span>POLI</span><br><span>GLOO</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="home-screen-template" style="display: none;">
+        <div class="screen-template-container">
+            <div class="p-4 md:p-6 h-full flex flex-col bg-white">
+                <header class="flex justify-between items-center mb-6 pb-3">
+                    <div class="flex items-center">
+                        <img src="images/logo-voltar.png" alt="Início Poligloo" class="home-header-app-icon" onclick="navigateTo('home', null, 'comunidades')">
+                    </div>
+                    <nav class="flex space-x-4 md:space-x-8">
+                        <a href="#" class="home-nav-link home-nav-inactive" onclick="setActiveNav(this); navigateTo('home', null, 'explorar')">Explorar</a>
+                        <a href="#" class="home-nav-link home-nav-active" onclick="setActiveNav(this); navigateTo('home', null, 'comunidades')">Comunidades</a>
+                        <a href="#" class="home-nav-link home-nav-inactive" onclick="setActiveNav(this); navigateTo('home', null, 'avisos')">AVISOS</a>
+                    </nav>
+                    <div class="flex items-center">
+                        <img src="images/perfil.png" alt="Perfil" class="home-header-avatar">
+                        <svg class="home-settings-icon ml-3" fill="#d6d6f2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
+                    </div>
+                </header>
+                <div id="home-content-area" class="flex-grow overflow-y-auto pr-2">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="home-comunidades-content" style="display:none;">
+        <div class="space-y-4">
+            <div class="community-card" data-community-name="compiladores" data-joined="true"> 
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h3 class="community-card-title">COMPILADORES</h3>
+                        <p class="community-card-participants">
+                            <span class="user-name">marolo obv</span>, <span class="user-name">Carolzinhoone</span> e outras 30 pessoas participam
+                        </p>
+                    </div>
+                    <img src="images/simbolo ok comun-06.png" alt="Participando da comunidade Compiladores" class="community-action-icon" 
+                         onclick="handleCommunityActionClick(this, 'compiladores')">
+                </div>
+            </div>
+            <div class="community-card" data-community-name="redes-neurais" data-joined="false">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h3 class="community-card-title">REDES NEURAIS</h3>
+                        <p class="community-card-participants">
+                           <span class="user-name">igor@pv</span>, <span class="user-name">Carmen@Freitas</span> e outras 10 pessoas participam
+                        </p>
+                    </div>
+                    <img src="images/simbolo adicionar com-06.png" alt="Adicionar à comunidade Redes Neurais" class="community-action-icon" 
+                         onclick="handleCommunityActionClick(this, 'redes-neurais')">
+                </div>
+            </div>
+            <div class="community-card" data-community-name="algoritmos" data-joined="false">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h3 class="community-card-title">ALGORITMOS AVANÇADOS</h3>
+                        <p class="community-card-participants">
+                            <span class="user-name">ana.cs</span>, <span class="user-name">prof_xavier</span> e outras 15 pessoas participam
+                        </p>
+                    </div>
+                    <img src="images/simbolo adicionar com-06.png" alt="Adicionar à comunidade Algoritmos Avançados" class="community-action-icon" 
+                         onclick="handleCommunityActionClick(this, 'algoritmos')">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="home-explorar-content" style="display:none;">
+        <p class="text-gray-700 text-lg p-4">Conteúdo da aba Explorar. Aqui você descobrirá novas comunidades e tópicos!</p>
+    </div>
+    <div id="home-avisos-content" style="display:none;">
+        <p class="text-gray-700 text-lg p-4">Nenhum aviso geral no momento.</p>
+    </div>
+
+    <div id="community-detail-screen-template" style="display: none;">
+        <div class="screen-template-container">
+            <div class="p-4 md:p-6 h-full flex flex-col bg-[#F4F6F9]">
+                <header class="mb-4">
+                    <button class="text-sm text-[#837FD6] hover:text-[#0B0B54] mb-2" onclick="navigateTo('home', null, 'comunidades')">&lt; Voltar para Comunidades</button>
+                    <h2 id="community-title" class="text-2xl font-bold text-[#0B0B54]">COMPILADORES</h2>
+                </header>
+                <nav class="flex space-x-6 border-b border-gray-300 mb-4 text-lg">
+                    <a href="#" class="py-2 home-nav-link home-nav-active" onclick="setActiveCommunityTab(this); showCommunityContent('geral')">Geral</a>
+                    <a href="#" class="py-2 home-nav-link home-nav-inactive" onclick="setActiveCommunityTab(this); showCommunityContent('avisos')">Avisos</a>
+                    <a href="#" class="py-2 home-nav-link home-nav-inactive" onclick="setActiveCommunityTab(this); showCommunityContent('arquivos')">Arquivos</a>
+                    <a href="#" class="py-2 home-nav-link home-nav-inactive" onclick="setActiveCommunityTab(this); showCommunityContent('membros')">Membros</a>
+                </nav>
+                <div id="community-content-area" class="flex-grow overflow-y-auto pr-2">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="community-geral-content" style="display:none;">
+        <div class="space-y-5">
+            <div class="bg-white p-4 rounded-md shadow post-container">
+                <div class="flex items-start space-x-3">
+                    <div class="bg-gray-300 w-10 h-10 rounded-full flex-shrink-0"></div>
+                    <div class="flex-grow">
+                        <div class="flex items-baseline space-x-2">
+                            <p class="font-bold text-sm text-[#060633]">@Isaahbela_0</p>
+                            <p class="text-xs text-gray-500 italic">Engenharia da computação</p>
+                            <p class="text-xs text-gray-400">23/02/24 19:12</p>
+                        </div>
+                        <p class="mt-1 text-sm text-[#0B0B54] font-light post-text-content">Gente!!! Perdi a aula ontem por conta das chuvas :(, Rogério passou algo de importante? já entreguei os 4 exercícios</p>
+                        <div class="mt-2 space-x-2 post-actions">
+                            <button class="text-xs text-[#2E74E5] font-medium hover:underline" onclick="handleReplyToPost(this)">Responder</button>
+                            <button class="gemini-button" onclick="handleSuggestReplies(this)">Sugerir Respostas ✨</button>
+                            <button class="gemini-button" onclick="handleSummarizePost(this)">Resumir Post ✨</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-md shadow ml-8 post-container"> 
+                 <div class="flex items-start space-x-3">
+                    <div class="bg-gray-400 w-8 h-8 rounded-full flex-shrink-0"></div> 
+                    <div class="flex-grow">
+                        <div class="flex items-baseline space-x-2">
+                            <p class="font-bold text-sm text-[#060633]">@galvaobueno</p>
+                            <p class="text-xs text-gray-500 italic">Engenharia da computação</p>
+                             <p class="text-xs text-gray-400">23/02/24 19:15</p>
+                        </div>
+                        <p class="mt-1 text-sm text-[#0B0B54] font-light post-text-content">Bicho, ele botou torando na gente... passou 3 trabalhos</p>
+                         <div class="mt-2 space-x-2 post-actions">
+                            <button class="text-xs text-[#2E74E5] font-medium hover:underline" onclick="handleReplyToPost(this)">Responder</button>
+                            <button class="gemini-button" onclick="handleSuggestReplies(this)">Sugerir Respostas ✨</button>
+                            <button class="gemini-button" onclick="handleSummarizePost(this)">Resumir Post ✨</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-md shadow post-container">
+                <div class="flex items-start space-x-3">
+                    <div class="bg-indigo-300 w-10 h-10 rounded-full flex-shrink-0"></div> 
+                    <div class="flex-grow">
+                        <div class="flex items-baseline space-x-2">
+                            <p class="font-bold text-sm text-[#060633]">@prof_notes</p>
+                            <p class="text-xs text-gray-500 italic">Professor</p>
+                            <p class="text-xs text-gray-400">24/02/24 09:00</p>
+                        </div>
+                        <p class="mt-1 text-sm text-[#0B0B54] font-light post-text-content">Lembrete: A entrega final do projeto de compiladores é na próxima sexta-feira! Não se esqueçam de testar exaustivamente. Verifiquem todos os casos de teste e documentem bem o código. Boa sorte a todos!</p>
+                        <div class="mt-2 space-x-2 post-actions">
+                            <button class="text-xs text-[#2E74E5] font-medium hover:underline" onclick="handleReplyToPost(this)">Responder</button>
+                            <button class="gemini-button" onclick="handleSuggestReplies(this)">Sugerir Respostas ✨</button>
+                            <button class="gemini-button" onclick="handleSummarizePost(this)">Resumir Post ✨</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="community-avisos-content" style="display:none;">
+        <p class="text-gray-700 p-4">Nenhum aviso específico para Compiladores no momento.</p>
+    </div>
+     <div id="community-arquivos-content" style="display:none;">
+        <ul class="space-y-2 p-4">
+            <li class="text-blue-600 hover:underline cursor-pointer">aula1_introducao.pdf</li>
+            <li class="text-blue-600 hover:underline cursor-pointer">especificacao_trabalho1.docx</li>
+            <li class="text-blue-600 hover:underline cursor-pointer">slides_parsers.pptx</li>
+        </ul>
+    </div>
+    <div id="community-membros-content" style="display:none;">
+         <ul class="space-y-3 p-4">
+            <li class="flex items-center space-x-3 p-2 bg-white rounded shadow-sm">
+                <div class="bg-green-300 w-8 h-8 rounded-full"></div>
+                <div>
+                    <p class="font-bold text-sm text-[#060633]">@pietro_ponei</p>
+                    <p class="text-xs text-gray-500 italic">Engenharia da computação</p>
+                </div>
+            </li>
+            <li class="flex items-center space-x-3 p-2 bg-white rounded shadow-sm">
+                <div class="bg-yellow-300 w-8 h-8 rounded-full"></div>
+                <div>
+                    <p class="font-bold text-sm text-[#060633]">@Isaahbela_</p>
+                    <p class="text-xs text-gray-500 italic">Engenharia de computação</p>
+                </div>
+            </li>
+             <li class="flex items-center space-x-3 p-2 bg-white rounded shadow-sm">
+                <div class="bg-purple-300 w-8 h-8 rounded-full"></div>
+                <div>
+                    <p class="font-bold text-sm text-[#060633]">@carolzita</p>
+                    <p class="text-xs text-gray-500 italic">Ciência da Computação</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        const appScreen = document.getElementById('app-screen');
+        const geminiModal = document.getElementById('gemini-modal');
+        const geminiModalTitle = document.getElementById('gemini-modal-title');
+        const geminiModalBody = document.getElementById('gemini-modal-body');
+
+        let currentScreenId = 'login'; 
+        let nextScreenAfterLoading = 'home'; 
+
+        const communityJoinState = {
+            'compiladores': true, 
+            'redes-neurais': false,
+            'algoritmos': false
+        };
+
+        function updateCommunityButtonIcon(buttonElement, communityName) {
+            if (communityJoinState[communityName]) {
+                buttonElement.src = 'images/simbolo ok comun-06.png';
+                buttonElement.alt = `Participando da comunidade ${communityName}`;
+            } else {
+                buttonElement.src = 'images/simbolo adicionar com-06.png';
+                buttonElement.alt = `Adicionar à comunidade ${communityName}`;
+            }
+        }
+        
+        function handleCommunityActionClick(buttonElement, communityName) {
+            communityJoinState[communityName] = !communityJoinState[communityName];
+            updateCommunityButtonIcon(buttonElement, communityName);
+
+            if (communityJoinState[communityName]) {
+                console.log(`Usuário agora participa de ${communityName}.`);
+                navigateTo('community-detail', null, communityName);
+            } else {
+                console.log(`Usuário saiu de ${communityName}.`);
+            }
+        }
+
+
+        function navigateTo(screenId, nextScreen = null, subContentId = null) {
+            const targetTemplate = document.getElementById(`${screenId}-screen-template`);
+            if (targetTemplate) {
+                appScreen.innerHTML = `<div class="screen-template-container">${targetTemplate.innerHTML}</div>`;
+                currentScreenId = screenId;
+
+                if (screenId === 'loading') {
+                    nextScreenAfterLoading = nextScreen || 'home';
+                    setTimeout(() => {
+                        if (nextScreenAfterLoading === 'home') {
+                            navigateTo('home', null, 'comunidades');
+                        } else {
+                            navigateTo(nextScreenAfterLoading);
+                        }
+                    }, 2000); 
+                } else if (screenId === 'home') {
+                    const homeContentArea = appScreen.querySelector('#home-content-area');
+                    if (homeContentArea) {
+                        const activeSubContentId = subContentId || 'comunidades'; 
+                        const subContentTemplate = document.getElementById(`home-${activeSubContentId}-content`);
+                        if (subContentTemplate) {
+                            homeContentArea.innerHTML = subContentTemplate.innerHTML;
+                            if (activeSubContentId === 'comunidades') {
+                                const communityCards = homeContentArea.querySelectorAll('.community-card');
+                                communityCards.forEach(card => {
+                                    const communityName = card.dataset.communityName;
+                                    const button = card.querySelector('.community-action-icon');
+                                    if (button && communityName) {
+                                        updateCommunityButtonIcon(button, communityName); 
+                                        const newButton = button.cloneNode(true); 
+                                        button.parentNode.replaceChild(newButton, button);
+                                        newButton.addEventListener('click', function() {
+                                            handleCommunityActionClick(this, communityName);
+                                        });
+                                    }
+                                });
+                            }
+                        }
+                        const navLinks = appScreen.querySelectorAll('header nav a.home-nav-link');
+                        navLinks.forEach(link => {
+                            link.classList.remove('home-nav-active');
+                            link.classList.add('home-nav-inactive');
+                            const linkText = link.textContent.toLowerCase().trim();
+                            const targetSubContentId = activeSubContentId.toLowerCase().trim();
+
+                            if ((targetSubContentId === 'explorar' && linkText === 'explorar') ||
+                                (targetSubContentId === 'comunidades' && linkText === 'comunidades') ||
+                                (targetSubContentId === 'avisos' && linkText === 'avisos')) {
+                                link.classList.add('home-nav-active');
+                                link.classList.remove('home-nav-inactive');
+                            }
+                        });
+                    }
+                } else if (screenId === 'community-detail') {
+                    const communityTitleEl = appScreen.querySelector('#community-title');
+                    if (communityTitleEl && subContentId) {
+                        let title = "Comunidade";
+                        if (subContentId === 'compiladores') title = "COMPILADORES";
+                        else if (subContentId === 'redes-neurais') title = "REDES NEURAIS";
+                        else if (subContentId === 'algoritmos') title = "ALGORITMOS AVANÇADOS";
+                        communityTitleEl.textContent = title;
+                    }
+                    showCommunityContent('geral'); 
+                    const communityNavLinks = appScreen.querySelectorAll('#community-detail-screen-template nav a.home-nav-link'); 
+                    communityNavLinks.forEach(link => {
+                        if (link.textContent.toLowerCase().trim() === 'geral') {
+                            setActiveCommunityTab(link);
+                        } else {
+                            link.classList.remove('home-nav-active');
+                             link.classList.add('home-nav-inactive');
+                        }
+                    });
+                }
+            } else {
+                console.error(`Template para screenId '${screenId}' não encontrado.`);
+                appScreen.innerHTML = `<p class="text-red-500 p-4">Erro: Ecrã '${screenId}' não encontrado.</p>`;
+            }
+        }
+        
+        function setActiveNav(clickedLink) {
+            const navLinks = clickedLink.closest('nav').querySelectorAll('a.home-nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('home-nav-active');
+                link.classList.add('home-nav-inactive');
+            });
+            clickedLink.classList.add('home-nav-active');
+            clickedLink.classList.remove('home-nav-inactive');
+        }
+
+        function setActiveCommunityTab(clickedLink) {
+            const tabLinks = clickedLink.closest('nav').querySelectorAll('a.home-nav-link');
+            tabLinks.forEach(link => {
+                link.classList.remove('home-nav-active'); 
+                link.classList.add('home-nav-inactive');
+            });
+            clickedLink.classList.add('home-nav-active');
+            clickedLink.classList.remove('home-nav-inactive');
+        }
+
+        function showCommunityContent(tabId) {
+            const contentArea = appScreen.querySelector('#community-content-area');
+            if (contentArea) {
+                const contentTemplate = document.getElementById(`community-${tabId}-content`);
+                if (contentTemplate) {
+                    contentArea.innerHTML = contentTemplate.innerHTML;
+                } else {
+                    contentArea.innerHTML = `<p class="p-4">Conteúdo para '${tabId}' não encontrado.</p>`;
+                }
+            }
+        }
+
+        function openGeminiModal(title) {
+            geminiModalTitle.textContent = title;
+            geminiModalBody.innerHTML = '<div class="loading-spinner"></div>'; 
+            geminiModal.style.display = 'flex';
+        }
+
+        function closeGeminiModal() {
+            geminiModal.style.display = 'none';
+        }
+
+        async function callGeminiAPI(prompt) {
+            const apiKey = ""; 
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+            const payload = { contents: chatHistory };
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error("Erro da API:", errorData);
+                    return `Erro ao contatar a API Gemini: ${response.status} ${response.statusText}. Detalhes: ${JSON.stringify(errorData.error?.message || errorData)}`;
+                }
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    return result.candidates[0].content.parts[0].text;
+                } else {
+                     console.error("Resposta inesperada da API:", result);
+                    if (result.promptFeedback && result.promptFeedback.blockReason) {
+                         return `Conteúdo bloqueado pela API Gemini. Razão: ${result.promptFeedback.blockReason}. Detalhes: ${JSON.stringify(result.promptFeedback.safetyRatings || {})}`;
+                    }
+                    return "Não foi possível obter uma resposta da API Gemini ou a resposta está vazia.";
+                }
+            } catch (error) {
+                console.error("Erro na chamada da API:", error);
+                return "Erro ao tentar se comunicar com a API Gemini. Verifique o console para mais detalhes.";
+            }
+        }
+
+        async function handleSuggestReplies(buttonElement) {
+            const postElement = buttonElement.closest('.flex-grow');
+            const postTextContent = postElement.querySelector('.post-text-content').textContent.trim();
+            openGeminiModal("Sugestões de Resposta ✨");
+            const prompt = `Sugira três respostas concisas e relevantes para o seguinte post de um fórum de estudantes:\n\n"${postTextContent}"\n\nFormato da resposta:\n1. [Sugestão 1]\n2. [Sugestão 2]\n3. [Sugestão 3]`;
+            const suggestions = await callGeminiAPI(prompt);
+            geminiModalBody.textContent = suggestions;
+        }
+
+        async function handleSummarizePost(buttonElement) {
+            const postElement = buttonElement.closest('.flex-grow');
+            const postTextContent = postElement.querySelector('.post-text-content').textContent.trim();
+            openGeminiModal("Resumo do Post ✨");
+            const prompt = `Resuma o seguinte post de um fórum de forma concisa (1-2 frases):\n\n"${postTextContent}"`;
+            const summary = await callGeminiAPI(prompt);
+            geminiModalBody.textContent = summary;
+        }
+        
+        function handleReplyToPost(buttonElement) {
+            const postActionsDiv = buttonElement.closest('.post-actions');
+            if (!postActionsDiv) return;
+            const existingReplyContainer = postActionsDiv.parentNode.querySelector('.reply-input-container');
+            if (existingReplyContainer) {
+                existingReplyContainer.remove();
+            }
+            const replyContainer = document.createElement('div');
+            replyContainer.className = 'reply-input-container';
+            const replyInput = document.createElement('input');
+            replyInput.type = 'text';
+            replyInput.placeholder = 'Escreva sua resposta...';
+            replyInput.className = 'reply-input poligloo-input'; 
+            const sendButton = document.createElement('button');
+            sendButton.textContent = 'Enviar';
+            sendButton.className = 'send-reply-button';
+            sendButton.onclick = function() {
+                if (replyInput.value.trim() !== "") {
+                    console.log("Resposta enviada (simulado):", replyInput.value);
+                    const simpleReplyDisplay = document.createElement('p');
+                    simpleReplyDisplay.textContent = `Sua resposta: ${replyInput.value}`;
+                    simpleReplyDisplay.className = 'text-xs text-gray-600 mt-1 ml-3 p-2 bg-blue-50 rounded';
+                    const postContainer = postActionsDiv.closest('.post-container');
+                    if(postContainer) {
+                        postContainer.appendChild(simpleReplyDisplay);
+                    }
+                    replyContainer.remove();
+                } else {
+                    replyInput.focus();
+                }
+            };
+            replyContainer.appendChild(replyInput);
+            replyContainer.appendChild(sendButton);
+            postActionsDiv.parentNode.appendChild(replyContainer);
+            replyInput.focus();
+        }
+
+        navigateTo('loading', 'login');
+    </script>
+</body>
+</html>
