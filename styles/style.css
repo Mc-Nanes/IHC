@@ -106,14 +106,7 @@
         .poligloo-logo-vertical-loading { 
             max-width: 150px; 
         }
-        .poligloo-loading-text {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600; 
-            font-size: 29.86pt; 
-            color: #939DCE;
-            margin-top: -20px; 
-            text-align: center;
-        }
+       
         .home-header-app-icon { 
             width: 40px; 
             height: 40px;

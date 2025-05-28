@@ -23,192 +23,197 @@
         .app-screen {
             width: 100%;
             height: 100%;
-            background-color: transparent; /* Tela da app agora é transparente para o body mostrar o F4F6F9 */
+            background-color: transparent; 
             overflow-y: auto; 
             position: relative;
             display: flex;
             flex-direction: column;
         }
 
-        /* Estilos para telas de Autenticação (Login e Cadastro) */
-        .auth-screen-container { /* Container para centralizar o card de autenticação */
+        /* Estilos para telas de Autenticação (Login e Cadastro) - Atualizados Conforme Imagem e CSS fornecido */
+        .auth-screen-container { 
             flex-grow: 1;
             display: flex;
+            flex-direction: column; 
             align-items: center;
             justify-content: center;
-            padding: 1rem; /* Espaçamento nas laterais */
+            padding: 1rem; 
+            background-color: #F4F6F9; 
         }
-        .auth-card {
-            background-color: #FFFFFF;
-            padding: 2.5rem; /* Mais padding interno no card */
-            border-radius: 16px; /* Bordas mais arredondadas para o card */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada */
+        .auth-form-card, .auth-link-container { /* Aplicando estilos comuns aos dois cards */
+            background: #FAFAFC; 
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2pt solid #E6E6E8;
             width: 100%;
-            max-width: 450px; /* Largura máxima do card */
+            max-width: 652px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Sombra suave opcional */
         }
-        .auth-logo {
-            max-width: 220px; /* Ajustar tamanho do logo */
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 2.5rem; /* Mais espaço abaixo do logo */
+
+        .auth-link-container {
+            margin-top: 45px; /* Espaçamento entre os cards */
+            padding: 1rem; /* Padding menor para o card de link */
+             /* height: auto; Altura se ajusta ao conteúdo */
+        }
+
+        .auth-form-card form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .auth-logo { 
+            width: 300.0959px; 
+            height: auto; 
+            margin-bottom: 2.5rem; 
         }
         .auth-input {
-            background-color: #F4F6F9; /* Fundo dos inputs conforme especificação */
-            border: 1px solid #939DCE; /* Borda azul/roxa clara */
-            border-radius: 10px; /* Bordas arredondadas dos inputs */
-            padding: 14px 18px; 
-            width: 100%;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300; /* Light */
-            font-size: 14.99pt; 
-            color: #333; /* Cor do texto digitado */
-            margin-bottom: 1.25rem; /* Espaço entre inputs */
+            padding-left: 1rem;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            border: 1.67px solid #939DCE;
+            border-radius: 10px;
+            margin-bottom: 1rem; 
+            background-color: #F4F6F9;
+            font-family: 'Poppins', sans-serif; 
+            font-size: 14.99pt;
+            width: 90%; 
+            color: #374151; 
         }
         .auth-input::placeholder {
-            color: #878787; /* Cor do placeholder */
-            font-weight: 300;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14.99pt;
+            color: #878787;
+            font-weight: 300; 
         }
         .auth-input:focus {
-            border-color: #2E74E5; /* Borda mais escura no foco */
+            border-color: #2E74E5; 
             outline: none;
-            box-shadow: 0 0 0 2px rgba(46, 116, 229, 0.2);
+            box-shadow: 0 0 0 2px rgba(46, 116, 229, 0.15);
         }
         .auth-button {
-            background-color: #2E74E5; 
-            color: white;
             font-family: 'Fredoka', sans-serif; 
-            font-weight: 700; /* Bold */
-            font-size: 19.1pt;
-            padding: 12px 20px;
-            border-radius: 10px; 
-            text-align: center;
+            font-weight: 600; 
+            margin-top: 0.5rem; 
+            margin-bottom: 0.5rem;
+            background-color: #2e74e5;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 10px;
             cursor: pointer;
+            font-size: 19pt;
+            width: 94%; 
             transition: background-color 0.3s ease;
-            width: 100%;
-            margin-top: 1rem; /* Espaço acima do botão */
         }
         .auth-button:hover {
-            background-color: #1E5CB3; 
+            background-color: #1A5EB8; 
         }
-        .auth-link {
-            font-family: 'Poppins', sans-serif;
-            font-size: 14.99pt; /* Conforme especificação (19pt parecia muito grande para este link) */
+        .auth-link { 
+            font-size: 19pt; 
+            color: #0B0B54;
             text-align: center;
-            margin-top: 1.5rem;
         }
-        .auth-link .main-text {
-            font-weight: 300; /* Light */
-            color: #0B0B54; 
+        .auth-link .main-text { 
+             font-weight: 300; 
         }
-        .auth-link .action-text {
-            font-weight: 700; /* Bold */
-            color: #2E74E5; 
-            cursor: pointer;
+        .auth-link .action-text { 
+            font-weight: 600; 
+            color: #2E74E5;
             text-decoration: none;
+            cursor: pointer;
         }
         .auth-link .action-text:hover {
             text-decoration: underline;
         }
-
-
-        /* Estilos específicos da aplicação (mantidos) */
-        .poligloo-logo-vertical-loading { 
-            max-width: 150px; 
-        }
-        .poligloo-loading-text {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600; 
-            font-size: 29.86pt; 
-            color: #939DCE;
-            margin-top: -20px; 
+        .auth-error-message { 
+            color: red;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
             text-align: center;
         }
-        .home-header-app-icon { 
-            width: 40px; 
-            height: 40px;
-            cursor: pointer;
-        }
-        .home-header-avatar {
-            width: 38.93px; 
-            height: 38.93px;
-            border-radius: 50%;
-            margin-left: 1rem; 
-        }
-        .home-nav-link {
-            font-family: 'Poppins', sans-serif;
-            font-size: 21.07pt;
-            padding-bottom: 4px; 
-            cursor: pointer;
-        }
-        .home-nav-active {
-            font-weight: 700; 
-            color: #0B0B54 !important;
-            border-bottom: 3px solid #0B0B54; 
-        }
-        .home-nav-inactive {
-            font-weight: 500; 
-            color: #837FD6 !important;
-        }
-        .home-settings-icon { 
-            width: 24px; 
-            height: auto;
-        }
-        .community-card {
-            background-color: #FFFFFF; 
-            border: 0.532px solid #939DCE; 
-            border-radius: 12px; 
-            padding: 1.25rem; 
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        .community-card-title {
-            font-family: 'Fredoka', sans-serif;
-            font-weight: 700; 
-            font-size: 18.44pt;
-            color: #939DCE; 
-            margin-bottom: 4px;
-        }
-        .community-card-participants {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300; 
-            font-size: 0.75rem; 
-            color: #384E7A; 
-        }
-        .community-card-participants .user-name {
-            font-weight: 400; 
-        }
-        .community-action-icon {
-            width: 40px; 
-            height: 40px;
-            cursor: pointer;
-        }
 
-        .gemini-button {
-            background-color: #A855F7; 
-            color: white;
-            font-size: 0.65rem; 
-            padding: 4px 8px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            display: inline-flex;
+
+        /* Estilos Tela de Loading - Conforme Loading.css */
+        .loading-screen-overlay { 
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #FFFFFF; 
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 4px;
+            justify-content: center;
+            z-index: 10000; 
         }
-        .gemini-button:hover {
-            background-color: #9333EA;
+        .loading-screen-overlay img { 
+            width: 300px; 
+            height: auto;
+            margin-bottom: 20px; 
         }
+        .loading-screen-overlay .entrando-text { 
+            display: inline-block; 
+            font-size: 35pt; 
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600; 
+            color: #939DCE;
+        } 
+        .loading-screen-overlay .dots-container { 
+             display: inline-block; 
+        }
+        .loading-screen-overlay .dots {
+            display: inline-block;
+            font-size: 35pt; 
+            color: #939DCE; 
+            margin-left: 2px; 
+            animation: pulse-loading-dots 1.5s infinite; 
+        }
+        .loading-screen-overlay .dots:nth-child(1) {
+            animation-delay: 0s; 
+        }
+        .loading-screen-overlay .dots:nth-child(2) {
+            animation-delay: 0.5s; 
+        }
+        .loading-screen-overlay .dots:nth-child(3) {
+            animation-delay: 1s; 
+        }
+        @keyframes pulse-loading-dots { 
+            0%, 20%, 100% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            10% { 
+                transform: scale(1.5);
+                opacity: 1;
+            }
+        }
+        
+        /* Estilos da Tela de Comunidades (Home) - Mantidos */
+        .home-header-app-icon { width: 40px; height: 40px; cursor: pointer; }
+        .home-header-avatar { width: 38.93px; height: 38.93px; border-radius: 50%; margin-left: 1rem; }
+        .home-nav-link { font-family: 'Poppins', sans-serif; font-size: 21.07pt; padding-bottom: 4px; cursor: pointer; }
+        .home-nav-active { font-weight: 700; color: #0B0B54 !important; border-bottom: 3px solid #0B0B54; }
+        .home-nav-inactive { font-weight: 500; color: #837FD6 !important; }
+        .home-settings-icon { width: 24px; height: auto;}
+        .community-card { background-color: #FFFFFF; border: 0.532px solid #939DCE; border-radius: 12px; padding: 1.25rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .community-card-title { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 18.44pt; color: #939DCE; margin-bottom: 4px; }
+        .community-card-participants { font-family: 'Poppins', sans-serif; font-weight: 300; font-size: 0.75rem; color: #384E7A; }
+        .community-card-participants .user-name { font-weight: 400; }
+        .community-action-icon { width: 40px; height: 40px; cursor: pointer; }
+
+        .gemini-button { background-color: #A855F7; color: white; font-size: 0.65rem; padding: 4px 8px; border-radius: 6px; cursor: pointer; transition: background-color 0.3s ease; display: inline-flex; align-items: center; gap: 4px; }
+        .gemini-button:hover { background-color: #9333EA; }
         .app-screen::-webkit-scrollbar { width: 8px; }
         .app-screen::-webkit-scrollbar-track { background: #E0E7FF; border-radius: 10px; }
         .app-screen::-webkit-scrollbar-thumb { background: #939DCE; border-radius: 10px; }
         .app-screen::-webkit-scrollbar-thumb:hover { background: #837FD6; }
 
-        .modal-overlay { 
-            position: fixed; 
-            top: 0; left: 0; right: 0; bottom: 0; 
-            background-color: rgba(0, 0, 0, 0.5); 
-            display: flex; justify-content: center; align-items: center; 
-            z-index: 1000; 
-        }
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; z-index: 1000; }
         .modal-content { background-color: white; padding: 20px; border-radius: 8px; width: 90%; max-width: 500px; max-height: 80vh; overflow-y: auto; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .modal-title { font-size: 1.25rem; font-weight: 600; color: #0B0B54; margin-bottom: 1rem; }
         .modal-body { font-size: 0.9rem; color: #333; white-space: pre-wrap; line-height: 1.6; }
@@ -254,11 +259,15 @@
     <div id="login-screen-template" style="display: none;">
         <div class="screen-template-container">
             <div class="auth-screen-container">
-                <div class="auth-card">
-                    <img src="images/Logo-horizontal-sem-simbolo.png" alt="Logo Poligloo" class="auth-logo">
-                    <input type="text" placeholder="nome de usuário ou email" class="auth-input">
-                    <input type="password" placeholder="senha" class="auth-input">
-                    <button class="auth-button" onclick="navigateTo('loading', 'home')">Entrar</button> 
+                <div class="auth-form-card">
+                    <form onsubmit="event.preventDefault(); navigateTo('loading', 'home');">
+                        <img src="images/Logo-horizontal-sem-simbolo.png" alt="Logo Poligloo" class="auth-logo">
+                        <input type="text" placeholder="nome de usuário ou email" class="auth-input" required>
+                        <input type="password" placeholder="senha" class="auth-input" required>
+                        <button type="submit" class="auth-button">Entrar</button> 
+                    </form>
+                </div>
+                <div class="auth-link-container"> 
                     <p class="auth-link">
                         <span class="main-text">Não tem uma conta? </span><a href="#" class="action-text" onclick="navigateTo('registration')">Cadastre-se</a>
                     </p>
@@ -270,13 +279,17 @@
     <div id="registration-screen-template" style="display: none;">
         <div class="screen-template-container">
             <div class="auth-screen-container">
-                <div class="auth-card">
-                    <img src="images/Logo-horizontal-sem-simbolo.png" alt="Logo Poligloo" class="auth-logo">
-                    <input type="text" placeholder="Matrícula" class="auth-input">
-                    <input type="text" placeholder="Nome completo" class="auth-input">
-                    <input type="text" placeholder="Nome de usuário" class="auth-input">
-                    <input type="password" placeholder="Senha" class="auth-input">
-                    <button class="auth-button" onclick="navigateTo('loading', 'home')">Cadastre-se</button>
+                <div class="auth-form-card">
+                     <form onsubmit="event.preventDefault(); navigateTo('loading', 'home');">
+                        <img src="images/Logo-horizontal-sem-simbolo.png" alt="Logo Poligloo" class="auth-logo">
+                        <input type="text" placeholder="Matrícula" class="auth-input" required>
+                        <input type="text" placeholder="Nome completo" class="auth-input" required>
+                        <input type="text" placeholder="Nome de usuário" class="auth-input" required>
+                        <input type="password" placeholder="Senha" class="auth-input" required>
+                        <button type="submit" class="auth-button">Cadastre-se</button>
+                    </form>
+                </div>
+                 <div class="auth-link-container">
                     <p class="auth-link">
                         <span class="main-text">Já tem uma conta? </span><a href="#" class="action-text" onclick="navigateTo('login')">Entrar</a>
                     </p>
@@ -287,11 +300,9 @@
 
     <div id="loading-screen-template" style="display: none;">
          <div class="screen-template-container">
-            <div class="flex flex-col items-center justify-center h-full bg-[#F4F6F9]">
-                <img src="images/Logo-Vertical.png" alt="Carregando Poligloo" class="poligloo-logo-vertical-loading mb-2">
-                <div class="poligloo-loading-text">
-                    <span>POLI</span><br><span>GLOO</span>
-                </div>
+            <div class="loading-screen-overlay">
+                <img src="images/Logo-Vertical.png" alt="Carregando Poligloo">
+                <p class="entrando-text">Entrando<span class="dots-container"><span class="dots">.</span><span class="dots">.</span><span class="dots">.</span></span></p>
             </div>
         </div>
     </div>
@@ -526,6 +537,7 @@
                 if (screenId === 'loading') {
                     nextScreenAfterLoading = nextScreen || 'home';
                     setTimeout(() => {
+                        // Se a próxima tela for 'home', força a aba 'comunidades'
                         if (nextScreenAfterLoading === 'home') {
                             navigateTo('home', null, 'comunidades');
                         } else {
