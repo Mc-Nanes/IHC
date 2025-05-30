@@ -12,7 +12,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
-            background-color: #F4F6F9; /* Cor de fundo da página */
+            background-color: #F4F6F9; 
         }
         #app-container {
             width: 100%;
@@ -30,181 +30,200 @@
             flex-direction: column;
         }
 
-        /* Estilos para telas de Autenticação (Login e Cadastro) - Atualizados Conforme Imagem e CSS fornecido */
-        .auth-screen-container { 
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column; 
-            align-items: center;
-            justify-content: center;
-            padding: 1rem; 
-            background-color: #F4F6F9; 
-        }
-        .auth-form-card, .auth-link-container { /* Aplicando estilos comuns aos dois cards */
-            background: #FAFAFC; 
-            padding: 2rem;
-            border-radius: 10px;
-            border: 2pt solid #E6E6E8;
-            width: 100%;
-            max-width: 652px; 
-            display: flex;
-            flex-direction: column;
-            align-items: center; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Sombra suave opcional */
-        }
+        /* Estilos para telas de Autenticação (Login e Cadastro) */
+        .auth-page-wrapper { flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1rem; background-color: #F4F6F9; }
+        .auth-form-card, .auth-link-card { background: #FAFAFC; padding: 2rem; border-radius: 10px; border: 2.67px solid #E6E6E8; width: 100%; max-width: 651.53px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .auth-link-card { margin-top: 45px; padding: 1rem; }
+        .auth-form-card form { display: flex; flex-direction: column; align-items: center; width: 100%; }
+        .auth-logo { width: 300.0959px; height: auto; margin-bottom: 2.5rem; }
+        .auth-input { padding-left: 1rem; padding-top: 1rem; padding-bottom: 1rem; border: 1.67px solid #939DCE; border-radius: 10px; margin-bottom: 1rem; background-color: #F4F6F9; font-family: 'Poppins', sans-serif; font-size: 14.99pt; width: 90%; color: #374151; }
+        .auth-input::placeholder { font-family: 'Poppins', sans-serif; font-size: 14.99pt; color: #878787; font-weight: 300; }
+        .auth-input:focus { border-color: #2E74E5; outline: none; box-shadow: 0 0 0 2px rgba(46, 116, 229, 0.15); }
+        .auth-button { font-family: 'Fredoka', sans-serif; font-weight: 600; margin-top: 0.5rem; margin-bottom: 0.5rem; background-color: #2e74e5; color: white; border: none; padding: 0.75rem; border-radius: 10px; cursor: pointer; font-size: 19pt; width: 94%; transition: background-color 0.3s ease; }
+        .register-page .auth-button { margin-top: 1.9rem; margin-bottom: 1.9rem; }
+        .auth-button:hover { background-color: #1A5EB8; }
+        .auth-link-text { font-size: 19pt; color: #0B0B54; text-align: center; }
+        .auth-link-text .main-text { font-weight: 300; }
+        .auth-link-text .action-text { font-weight: 600; color: #2E74E5; text-decoration: none; cursor: pointer; }
+        .auth-link-text .action-text:hover { text-decoration: underline; }
+        .auth-error-message { color: red; font-size: 0.9rem; margin-top: 0.5rem; text-align: center; }
 
-        .auth-link-container {
-            margin-top: 45px; /* Espaçamento entre os cards */
-            padding: 1rem; /* Padding menor para o card de link */
-             /* height: auto; Altura se ajusta ao conteúdo */
-        }
-
-        .auth-form-card form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-        .auth-logo { 
-            width: 300.0959px; 
-            height: auto; 
-            margin-bottom: 2.5rem; 
-        }
-        .auth-input {
-            padding-left: 1rem;
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-            border: 1.67px solid #939DCE;
-            border-radius: 10px;
-            margin-bottom: 1rem; 
-            background-color: #F4F6F9;
-            font-family: 'Poppins', sans-serif; 
-            font-size: 14.99pt;
-            width: 90%; 
-            color: #374151; 
-        }
-        .auth-input::placeholder {
-            font-family: 'Poppins', sans-serif;
-            font-size: 14.99pt;
-            color: #878787;
-            font-weight: 300; 
-        }
-        .auth-input:focus {
-            border-color: #2E74E5; 
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(46, 116, 229, 0.15);
-        }
-        .auth-button {
-            font-family: 'Fredoka', sans-serif; 
-            font-weight: 600; 
-            margin-top: 0.5rem; 
-            margin-bottom: 0.5rem;
-            background-color: #2e74e5;
-            color: white;
-            border: none;
-            padding: 0.75rem;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 19pt;
-            width: 94%; 
-            transition: background-color 0.3s ease;
-        }
-        .auth-button:hover {
-            background-color: #1A5EB8; 
-        }
-        .auth-link { 
-            font-size: 19pt; 
-            color: #0B0B54;
-            text-align: center;
-        }
-        .auth-link .main-text { 
-             font-weight: 300; 
-        }
-        .auth-link .action-text { 
-            font-weight: 600; 
-            color: #2E74E5;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .auth-link .action-text:hover {
-            text-decoration: underline;
-        }
-        .auth-error-message { 
-            color: red;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-            text-align: center;
-        }
-
-
-        /* Estilos Tela de Loading - Conforme Loading.css */
-        .loading-screen-overlay { 
-            position: fixed; 
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #FFFFFF; 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000; 
-        }
-        .loading-screen-overlay img { 
-            width: 300px; 
-            height: auto;
-            margin-bottom: 20px; 
-        }
-        .loading-screen-overlay .entrando-text { 
-            display: inline-block; 
-            font-size: 35pt; 
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600; 
-            color: #939DCE;
-        } 
-        .loading-screen-overlay .dots-container { 
-             display: inline-block; 
-        }
-        .loading-screen-overlay .dots {
-            display: inline-block;
-            font-size: 35pt; 
-            color: #939DCE; 
-            margin-left: 2px; 
-            animation: pulse-loading-dots 1.5s infinite; 
-        }
-        .loading-screen-overlay .dots:nth-child(1) {
-            animation-delay: 0s; 
-        }
-        .loading-screen-overlay .dots:nth-child(2) {
-            animation-delay: 0.5s; 
-        }
-        .loading-screen-overlay .dots:nth-child(3) {
-            animation-delay: 1s; 
-        }
-        @keyframes pulse-loading-dots { 
-            0%, 20%, 100% {
-                transform: scale(1);
-                opacity: 0.7;
-            }
-            10% { 
-                transform: scale(1.5);
-                opacity: 1;
-            }
-        }
+        /* Estilos Tela de Loading */
+        .loading-screen-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10000; }
+        .loading-screen-overlay img { width: 300px; height: auto; margin-bottom: 10px; }
+        .loading-screen-overlay .entrando-text { display: inline-block; font-size: 35pt; font-family: 'Poppins', sans-serif; font-weight: 600; color: #939DCE; } 
+        .loading-screen-overlay .dots-container { display: inline-block; }
+        .loading-screen-overlay .dots { display: inline-block; font-size: 35pt; color: #939DCE; margin-left: 2px; animation: pulse-loading-dots 1.5s infinite; }
+        .loading-screen-overlay .dots:nth-child(1) { animation-delay: 0s; }
+        .loading-screen-overlay .dots:nth-child(2) { animation-delay: 0.5s; }
+        .loading-screen-overlay .dots:nth-child(3) { animation-delay: 1s; }
+        @keyframes pulse-loading-dots { 0%, 20%, 100% { transform: scale(1); opacity: 0.7;} 10% { transform: scale(1.5); opacity: 1;} }
         
-        /* Estilos da Tela de Comunidades (Home) - Mantidos */
-        .home-header-app-icon { width: 40px; height: 40px; cursor: pointer; }
-        .home-header-avatar { width: 38.93px; height: 38.93px; border-radius: 50%; margin-left: 1rem; }
-        .home-nav-link { font-family: 'Poppins', sans-serif; font-size: 21.07pt; padding-bottom: 4px; cursor: pointer; }
-        .home-nav-active { font-weight: 700; color: #0B0B54 !important; border-bottom: 3px solid #0B0B54; }
-        .home-nav-inactive { font-weight: 500; color: #837FD6 !important; }
-        .home-settings-icon { width: 24px; height: auto;}
-        .community-card { background-color: #FFFFFF; border: 0.532px solid #939DCE; border-radius: 12px; padding: 1.25rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .community-card-title { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 18.44pt; color: #939DCE; margin-bottom: 4px; }
-        .community-card-participants { font-family: 'Poppins', sans-serif; font-weight: 300; font-size: 0.75rem; color: #384E7A; }
-        .community-card-participants .user-name { font-weight: 400; }
-        .community-action-icon { width: 40px; height: 40px; cursor: pointer; }
+        /* Estilos da Tela Principal (Home/Comunidades) - ATUALIZADOS */
+        .home-header { 
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            padding: 10px 2%; 
+            background-color: #F5F5F5; 
+            border-bottom: 1px solid #939DCE; 
+            height: 70px; 
+            position: sticky; 
+            top: 0;
+            z-index: 100; 
+        }
+        .home-header-logo-container img { 
+            width: 150px; 
+            height: auto;
+            cursor: pointer;
+        }
+        .home-header-nav { 
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            flex-grow: 1;
+        }
+        .home-header-nav a { 
+            padding: 0.4% 10px; 
+            background-color: transparent;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8em; 
+            color: #837FD6; /* Cor inativa padrão */
+            font-weight: 500; /* Poppins Medium por padrão */
+            cursor: pointer;
+            margin: 0 3%; 
+            transition: color 0.3s ease, border-bottom-color 0.3s ease; 
+            position: relative;
+            text-decoration: none;
+            border-bottom: 5px solid transparent; /* Borda transparente para manter o espaço */
+        }
+        .home-header-nav a:hover { /* Estilo hover geral, pode ser igual ao inativo se não quiser mudança no hover de inativos */
+            color: #5a5596; /* Um pouco mais escuro no hover para inativos */
+        }
+        .home-header-nav a.nav-active { 
+            color: #0B0B54 !important; /* Cor ativa */
+            font-weight: 700 !important; /* Poppins Bold */
+            border-bottom-color: #0B0B54 !important; /* Borda visível apenas no ativo */
+        }
+
+        .home-header-icons { 
+            display: flex;
+            align-items: center;
+            gap: 1rem; 
+        }
+        .home-header-avatar { 
+            width: 52px; /* Aumentado */
+            height: 52px; /* Aumentado */
+            border-radius: 50%; 
+            cursor: pointer; 
+        }
+        .home-settings-icon { width: 28px; height: auto; fill: #9CA3AF; cursor: pointer; } 
+
+        .home-content-area-wrapper { 
+            flex-grow: 1;
+            padding: 20px 19.7px; /* Adicionado padding superior e inferior */
+            margin-left: 15.97%; 
+            margin-right: 15.97%;
+            /* margin-top: 20px; Removido, o header é sticky */
+            margin-bottom: auto; 
+            background-color: transparent; /* Fundo da área geral transparente */
+            border-bottom: 1px solid #939DCE; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+            position: relative; 
+            overflow-y: auto;
+            z-index: 2; 
+        }
+
+        .communities-list { 
+            list-style: none;
+            padding: 0;
+            width: 100%; 
+        }
+        .community-card-item { 
+            display: flex;
+            align-items: center;
+            padding: 15px 0; 
+            padding-bottom: 20px;
+            position: relative; 
+            cursor: pointer;
+            border-bottom: 1px solid #939DCE; 
+            background-image: url('images/Fundo-padrão-iglu.png'); /* Fundo de tijolo AQUI */
+            background-repeat: repeat;
+            background-size: auto; /* Ou um tamanho específico */
+            border-radius: 12px; /* Para arredondar o fundo de tijolo também */
+            margin-bottom: 1rem; /* Espaço entre os cards */
+            overflow: hidden; /* Para o conteúdo não vazar */
+        }
+        .community-card-item:last-child {
+            border-bottom: none; 
+            margin-bottom: 0;
+        }
+        .community-main-button { 
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0; 
+            display: flex;
+            align-items: center;
+            flex-grow: 1; 
+            text-align: left; 
+        }
+        .community-iglu-img { 
+            width: 60px; /* Tamanho fixo para o iglu, como na imagem */
+            height: 60px;
+            margin-right: 15px; 
+            object-fit: contain; 
+            align-self: center; 
+        }
+        .community-info-wrapper { 
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            flex-grow: 1;
+        }
+        .community-title-bg { 
+            display: inline-block; 
+            padding: 5px 15px 5px 25px; /* Ajustado para encaixar texto no balão */
+            background-image: url('images/forma--titulo-comunidades.png');
+            background-size: contain; 
+            background-repeat: no-repeat;
+            background-position: left center;
+            margin-bottom: 6px; 
+            min-height: 50px; /* Para garantir altura mínima do balão */
+            display: flex; /* Para alinhar texto verticalmente */
+            align-items: center; /* Para alinhar texto verticalmente */
+        }
+        .community-name-text { 
+            font-size: 16pt; /* Ajustado para caber melhor no balão */
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            color: #384E7A; 
+            line-height: 1.1; 
+        }
+        .community-members-text { 
+            font-size: 0.8rem; 
+            background-color: #e1e1f4;
+            border-radius: 6px; 
+            padding: 3px 7px; 
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            color: #384e7a;
+            display: inline-block; 
+            width: auto; 
+            max-width: 100%; 
+        }
+        .community-action-icon-img { 
+            width: 38px; 
+            height: 38px; 
+            cursor: pointer; 
+            margin-left: 1rem; 
+            flex-shrink: 0; 
+        }
+        .vertical-line { position: absolute; top: 0; bottom: 0; width: 1px; background-color: #939DCE; z-index: -1; /* Atrás do conteúdo dos cards */ }
+        .left-line { left: 0; } 
+        .right-line { right: 0; }
+
 
         .gemini-button { background-color: #A855F7; color: white; font-size: 0.65rem; padding: 4px 8px; border-radius: 6px; cursor: pointer; transition: background-color 0.3s ease; display: inline-flex; align-items: center; gap: 4px; }
         .gemini-button:hover { background-color: #9333EA; }
@@ -258,7 +277,7 @@
 
     <div id="login-screen-template" style="display: none;">
         <div class="screen-template-container">
-            <div class="auth-screen-container">
+            <div class="auth-page-wrapper">
                 <div class="auth-form-card">
                     <form onsubmit="event.preventDefault(); navigateTo('loading', 'home');">
                         <img src="images/Logo-horizontal-sem-simbolo.png" alt="Logo Poligloo" class="auth-logo">
@@ -267,8 +286,8 @@
                         <button type="submit" class="auth-button">Entrar</button> 
                     </form>
                 </div>
-                <div class="auth-link-container"> 
-                    <p class="auth-link">
+                <div class="auth-link-card">
+                    <p class="auth-link-text">
                         <span class="main-text">Não tem uma conta? </span><a href="#" class="action-text" onclick="navigateTo('registration')">Cadastre-se</a>
                     </p>
                 </div>
@@ -278,7 +297,7 @@
 
     <div id="registration-screen-template" style="display: none;">
         <div class="screen-template-container">
-            <div class="auth-screen-container">
+            <div class="auth-page-wrapper">
                 <div class="auth-form-card">
                      <form onsubmit="event.preventDefault(); navigateTo('loading', 'home');">
                         <img src="images/Logo-horizontal-sem-simbolo.png" alt="Logo Poligloo" class="auth-logo">
@@ -289,8 +308,8 @@
                         <button type="submit" class="auth-button">Cadastre-se</button>
                     </form>
                 </div>
-                 <div class="auth-link-container">
-                    <p class="auth-link">
+                 <div class="auth-link-card">
+                    <p class="auth-link-text">
                         <span class="main-text">Já tem uma conta? </span><a href="#" class="action-text" onclick="navigateTo('login')">Entrar</a>
                     </p>
                 </div>
@@ -309,66 +328,72 @@
 
     <div id="home-screen-template" style="display: none;">
         <div class="screen-template-container">
-            <div class="p-4 md:p-6 h-full flex flex-col bg-white">
-                <header class="flex justify-between items-center mb-6 pb-3">
-                    <div class="flex items-center">
-                        <img src="images/logotipo-06.png" alt="Início Poligloo" class="home-header-app-icon" onclick="navigateTo('home', null, 'comunidades')">
+            <div class="flex flex-col h-full"> 
+                <header class="home-header">
+                    <div class="home-header-logo-container">
+                        <img src="images/logo-voltar.jpg" alt="Poligloo" onclick="navigateTo('home', null, 'comunidades')">
                     </div>
-                    <nav class="flex space-x-4 md:space-x-8">
-                        <a href="#" class="home-nav-link home-nav-inactive" onclick="setActiveNav(this); navigateTo('home', null, 'explorar')">Explorar</a>
-                        <a href="#" class="home-nav-link home-nav-active" onclick="setActiveNav(this); navigateTo('home', null, 'comunidades')">Comunidades</a>
-                        <a href="#" class="home-nav-link home-nav-inactive" onclick="setActiveNav(this); navigateTo('home', null, 'avisos')">AVISOS</a>
+                    <nav class="home-header-nav">
+                        <a href="#" class="nav-inactive" onclick="setActiveNav(this); navigateTo('home', null, 'explorar')">Explorar</a>
+                        <a href="#" class="nav-active" onclick="setActiveNav(this); navigateTo('home', null, 'comunidades')">Comunidades</a>
+                        <a href="#" class="nav-inactive" onclick="setActiveNav(this); navigateTo('home', null, 'avisos')">AVISOS</a>
                     </nav>
-                    <div class="flex items-center">
+                    <div class="home-header-icons">
                         <img src="images/perfil.png" alt="Perfil" class="home-header-avatar">
-                        <svg class="home-settings-icon ml-3" fill="#d6d6f2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
+                        <svg class="home-settings-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="5" r="2.5"/><circle cx="12" cy="12" r="2.5"/><circle cx="12" cy="19" r="2.5"/></svg>
                     </div>
                 </header>
-                <div id="home-content-area" class="flex-grow overflow-y-auto pr-2">
+                <div id="home-content-area" class="home-content-area-wrapper">
+                     <div class="vertical-line left-line"></div>
+                     <div class="vertical-line right-line"></div>
+                     {/* Conteúdo das comunidades será inserido aqui pelo JS */}
                 </div>
             </div>
         </div>
     </div>
     
     <div id="home-comunidades-content" style="display:none;">
-        <div class="space-y-4">
-            <div class="community-card" data-community-name="compiladores" data-joined="true"> 
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h3 class="community-card-title">COMPILADORES</h3>
-                        <p class="community-card-participants">
-                            <span class="user-name">marolo obv</span>, <span class="user-name">Carolzinhoone</span> e outras 30 pessoas participam
-                        </p>
+        <ul class="communities-list">
+            <li class="community-card-item" data-community-name="compiladores">
+                <button class="community-main-button" onclick="handleCardClick(this.closest('.community-card-item'), 'compiladores')">
+                    <img class="community-iglu-img" src="images/Iglu-05.png" alt="Compiladores">
+                    <div class="community-info-wrapper">
+                        <div class="community-title-bg">
+                            <span class="community-name-text">COMPILADORES</span>
+                        </div>
+                        <span class="community-members-text">marolo obv, Carolzinhoone e outras 30 pessoas participam</span>
                     </div>
-                    <img src="images/simbolo ok comun-06.png" alt="Participando da comunidade Compiladores" class="community-action-icon" 
-                         onclick="handleCommunityActionClick(this, 'compiladores')">
-                </div>
-            </div>
-            <div class="community-card" data-community-name="redes-neurais" data-joined="false">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h3 class="community-card-title">REDES NEURAIS</h3>
-                        <p class="community-card-participants">
-                           <span class="user-name">igor@pv</span>, <span class="user-name">Carmen@Freitas</span> e outras 10 pessoas participam
-                        </p>
+                </button>
+                <img src="images/simbolo ok comun-06.png" alt="Ação Compiladores" class="community-action-icon-img" 
+                     onclick="event.stopPropagation(); handleCommunityActionClick(this, 'compiladores')">
+            </li>
+            <li class="community-card-item" data-community-name="redes-neurais">
+                <button class="community-main-button" onclick="handleCardClick(this.closest('.community-card-item'), 'redes-neurais')">
+                    <img class="community-iglu-img" src="images/Iglu-05.png" alt="Redes Neurais">
+                     <div class="community-info-wrapper">
+                        <div class="community-title-bg">
+                            <span class="community-name-text">REDES NEURAIS</span>
+                        </div>
+                        <span class="community-members-text">igor@pv, Carmen@Freitas e outras 10 pessoas participam</span>
                     </div>
-                    <img src="images/simbolo adicionar com-06.png" alt="Adicionar à comunidade Redes Neurais" class="community-action-icon" 
-                         onclick="handleCommunityActionClick(this, 'redes-neurais')">
-                </div>
-            </div>
-            <div class="community-card" data-community-name="algoritmos" data-joined="false">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h3 class="community-card-title">ALGORITMOS AVANÇADOS</h3>
-                        <p class="community-card-participants">
-                            <span class="user-name">ana.cs</span>, <span class="user-name">prof_xavier</span> e outras 15 pessoas participam
-                        </p>
+                </button>
+                <img src="images/simbolo adicionar com-06.png" alt="Ação Redes Neurais" class="community-action-icon-img" 
+                     onclick="event.stopPropagation(); handleCommunityActionClick(this, 'redes-neurais')">
+            </li>
+             <li class="community-card-item" data-community-name="algoritmos">
+                <button class="community-main-button" onclick="handleCardClick(this.closest('.community-card-item'), 'algoritmos')">
+                    <img class="community-iglu-img" src="images/Iglu-05.png" alt="Algoritmos Avançados">
+                     <div class="community-info-wrapper">
+                        <div class="community-title-bg">
+                            <span class="community-name-text">ALGORITMOS AVANÇADOS</span>
+                        </div>
+                        <span class="community-members-text">ana.cs, prof_xavier e outras 15 pessoas participam</span>
                     </div>
-                    <img src="images/simbolo adicionar com-06.png" alt="Adicionar à comunidade Algoritmos Avançados" class="community-action-icon" 
-                         onclick="handleCommunityActionClick(this, 'algoritmos')">
-                </div>
-            </div>
-        </div>
+                </button>
+                <img src="images/simbolo adicionar com-06.png" alt="Ação Algoritmos" class="community-action-icon-img" 
+                     onclick="event.stopPropagation(); handleCommunityActionClick(this, 'algoritmos')">
+            </li>
+        </ul>
     </div>
     <div id="home-explorar-content" style="display:none;">
         <p class="text-gray-700 text-lg p-4">Conteúdo da aba Explorar. Aqui você descobrirá novas comunidades e tópicos!</p>
@@ -505,25 +530,38 @@
             'algoritmos': false
         };
 
-        function updateCommunityButtonIcon(buttonElement, communityName) {
+        function updateCommunityButtonIcon(iconElement, communityName) {
             if (communityJoinState[communityName]) {
-                buttonElement.src = 'images/simbolo ok comun-06.png';
-                buttonElement.alt = `Participando da comunidade ${communityName}`;
+                iconElement.src = 'images/simbolo ok comun-06.png';
+                iconElement.alt = `Participando da comunidade ${communityName}`;
             } else {
-                buttonElement.src = 'images/simbolo adicionar com-06.png';
-                buttonElement.alt = `Adicionar à comunidade ${communityName}`;
+                iconElement.src = 'images/simbolo adicionar com-06.png';
+                iconElement.alt = `Adicionar à comunidade ${communityName}`;
             }
         }
         
-        function handleCommunityActionClick(buttonElement, communityName) {
+        function handleCommunityActionClick(iconElement, communityName) {
             communityJoinState[communityName] = !communityJoinState[communityName];
-            updateCommunityButtonIcon(buttonElement, communityName);
+            updateCommunityButtonIcon(iconElement, communityName);
 
             if (communityJoinState[communityName]) {
                 console.log(`Usuário agora participa de ${communityName}.`);
-                navigateTo('community-detail', null, communityName);
             } else {
                 console.log(`Usuário saiu de ${communityName}.`);
+            }
+        }
+
+        function handleCardClick(cardItemElement, communityName) {
+            if (communityJoinState[communityName]) {
+                navigateTo('community-detail', null, communityName);
+            } else {
+                const iconElement = cardItemElement.querySelector('.community-action-icon-img');
+                if (iconElement) {
+                    communityJoinState[communityName] = true; 
+                    updateCommunityButtonIcon(iconElement, communityName);
+                    console.log(`Usuário entrou em ${communityName} ao clicar no card.`);
+                    navigateTo('community-detail', null, communityName);
+                }
             }
         }
 
@@ -537,7 +575,6 @@
                 if (screenId === 'loading') {
                     nextScreenAfterLoading = nextScreen || 'home';
                     setTimeout(() => {
-                        // Se a próxima tela for 'home', força a aba 'comunidades'
                         if (nextScreenAfterLoading === 'home') {
                             navigateTo('home', null, 'comunidades');
                         } else {
@@ -552,33 +589,52 @@
                         if (subContentTemplate) {
                             homeContentArea.innerHTML = subContentTemplate.innerHTML;
                             if (activeSubContentId === 'comunidades') {
-                                const communityCards = homeContentArea.querySelectorAll('.community-card');
+                                const communityCards = homeContentArea.querySelectorAll('.community-card-item'); 
                                 communityCards.forEach(card => {
                                     const communityName = card.dataset.communityName;
-                                    const button = card.querySelector('.community-action-icon');
-                                    if (button && communityName) {
-                                        updateCommunityButtonIcon(button, communityName); 
-                                        const newButton = button.cloneNode(true); 
-                                        button.parentNode.replaceChild(newButton, button);
-                                        newButton.addEventListener('click', function() {
+                                    const iconButton = card.querySelector('.community-action-icon-img');
+                                    
+                                    if (iconButton && communityName) {
+                                        updateCommunityButtonIcon(iconButton, communityName); 
+                                        
+                                        const newIconButton = iconButton.cloneNode(true);
+                                        iconButton.parentNode.replaceChild(newIconButton, iconButton);
+                                        newIconButton.addEventListener('click', function(event) {
+                                            event.stopPropagation(); 
                                             handleCommunityActionClick(this, communityName);
                                         });
                                     }
+                                    
+                                    const newCard = card.cloneNode(true); 
+                                    const newCardMainButton = newCard.querySelector('.community-main-button');
+                                     if(newCardMainButton && communityName){
+                                        newCardMainButton.addEventListener('click', function(){
+                                            handleCardClick(newCard, communityName); 
+                                        });
+                                    }
+                                    const newCardIconButtonForClone = newCard.querySelector('.community-action-icon-img');
+                                     if (newCardIconButtonForClone && communityName) {
+                                         newCardIconButtonForClone.addEventListener('click', function(event) {
+                                            event.stopPropagation(); 
+                                            handleCommunityActionClick(this, communityName);
+                                        });
+                                    }
+                                    card.parentNode.replaceChild(newCard, card);
                                 });
                             }
                         }
                         const navLinks = appScreen.querySelectorAll('header nav a.home-nav-link');
                         navLinks.forEach(link => {
-                            link.classList.remove('home-nav-active');
-                            link.classList.add('home-nav-inactive');
+                            link.classList.remove('nav-active');
+                            link.classList.add('nav-inactive');
                             const linkText = link.textContent.toLowerCase().trim();
                             const targetSubContentId = activeSubContentId.toLowerCase().trim();
 
                             if ((targetSubContentId === 'explorar' && linkText === 'explorar') ||
                                 (targetSubContentId === 'comunidades' && linkText === 'comunidades') ||
                                 (targetSubContentId === 'avisos' && linkText === 'avisos')) {
-                                link.classList.add('home-nav-active');
-                                link.classList.remove('home-nav-inactive');
+                                link.classList.add('nav-active');
+                                link.classList.remove('nav-inactive');
                             }
                         });
                     }
@@ -608,14 +664,14 @@
             }
         }
         
-        function setActiveNav(clickedLink) {
+        function setActiveNav(clickedLink) { 
             const navLinks = clickedLink.closest('nav').querySelectorAll('a.home-nav-link');
             navLinks.forEach(link => {
-                link.classList.remove('home-nav-active');
-                link.classList.add('home-nav-inactive');
+                link.classList.remove('nav-active');
+                // Não precisa adicionar nav-inactive aqui, o estilo base já é o inativo
             });
-            clickedLink.classList.add('home-nav-active');
-            clickedLink.classList.remove('home-nav-inactive');
+            clickedLink.classList.add('nav-active'); // A classe nav-active aplica cor e borda
+            // clickedLink.classList.remove('nav-inactive'); // Não é necessário remover se .nav-active sobrescreve
         }
 
         function setActiveCommunityTab(clickedLink) {
